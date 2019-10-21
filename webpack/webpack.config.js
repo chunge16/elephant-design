@@ -1,19 +1,16 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'production',
     entry: {
         index: './lib/index.tsx'
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'], // 使用的扩展名
     },
     output: {
         path: path.resolve(__dirname, 'dist/lib'),
         library: 'elephantDesign',
         libraryTarget: 'umd'
-    },
-    devServer: {
-        contentBase: './dist'
     },
     module: {
         rules: [
@@ -22,10 +19,5 @@ module.exports = {
                 loader: 'awesome-typescript-loader'
             }
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Webpack App'
-        })
-    ]
+    }
 };
