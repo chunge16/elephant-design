@@ -9,7 +9,7 @@ module.exports = Object.assign({}, base, {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack App',
-            template: './index.html'
+            template: 'index.html'
         })
     ]
 });
