@@ -1,6 +1,4 @@
 const path = require('path');
-console.log('__dirname', __dirname, 'resolve', path.resolve(__dirname, './dist/lib'));
-
 
 module.exports = {
     entry: {
