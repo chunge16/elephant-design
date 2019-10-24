@@ -17,6 +17,16 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                include: path.resolve(__dirname, './lib/assets/icons')
+            },
+            {
+                test: /\.svg$/,
+                loader: 'file-loader',
+                exclude: path.resolve(__dirname, './lib/assets/icons')
             }
         ]
     }
