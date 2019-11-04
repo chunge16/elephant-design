@@ -27,7 +27,11 @@ module.exports = {
                 test: /\.svg$/,
                 loader: 'file-loader',
                 exclude: path.resolve(__dirname, './lib/assets/icons')
-            }
+            },
+            {
+                test: /\.s([ac])ss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
         ]
     }
 };
