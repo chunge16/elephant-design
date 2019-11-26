@@ -3,7 +3,6 @@ import './importIcons';
 import style from './icon.scss';
 import classes from '../helpers/classes';
 
-
 interface IconProps extends React.SVGAttributes<SVGElement> {
     name: string;
 }
@@ -11,7 +10,7 @@ interface IconProps extends React.SVGAttributes<SVGElement> {
 const Icon: React.FunctionComponent<IconProps> =
     ({className = '', name, ...restProps}) => {
         return (
-            <svg className={classes(style['elephant-icon'], className)}
+            <svg className={classes(style.elephantIcon, className)}
                  {...restProps}
             >
                 <use xlinkHref={`#${name}`}/>

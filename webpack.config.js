@@ -1,5 +1,6 @@
 const path = require('path');
-const isDevMode = process.env.NODE_ENV !== 'production';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: {
@@ -13,6 +14,14 @@ module.exports = {
         library: 'elephantDesign',
         libraryTarget: 'umd'
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        }),
+    ],
     module: {
         rules: [
             {
@@ -32,18 +41,26 @@ module.exports = {
             {
                 test: /\.s([ac])ss$/,
                 use: [
-                    'style-loader',
-                    {
+                    devMode
+                        ? 'style-loader'
+                        : {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                                hmr: process.env.NODE_ENV === 'development',
+                                publicPath: './lib'
+                            },
+                        }, {
                         loader: 'css-loader',
                         options: {
                             modules: {
                                 mode: 'local',
-                                localIdentName: isDevMode
+                                localIdentName: devMode
                                     ? '[path][name]__[local]'
                                     : '[path][name]__[local]--[hash:base64:5]',
                                 context: path.resolve(__dirname, 'lib'),
                                 hashPrefix: 'my-custom-hash',
                             },
+                            localsConvention: 'camelCase'  // 类名将被骆驼化
                         },
                     },
                     'sass-loader'
