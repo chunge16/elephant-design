@@ -1,4 +1,5 @@
 const path = require('path');
+const isDevMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: {
@@ -37,7 +38,9 @@ module.exports = {
                         options: {
                             modules: {
                                 mode: 'local',
-                                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                localIdentName: isDevMode
+                                    ? '[path][name]__[local]'
+                                    : '[path][name]__[local]--[hash:base64:5]',
                                 context: path.resolve(__dirname, 'lib'),
                                 hashPrefix: 'my-custom-hash',
                             },
