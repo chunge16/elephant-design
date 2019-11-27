@@ -1,8 +1,9 @@
 import React from 'react';
+import './button.scss'
 
 function Button() {
     return (
-        <div>按钮</div>
+        <button className='elephant-button'>按钮</button>
     );
 }
 
